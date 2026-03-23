@@ -1,4 +1,4 @@
-import { User } from "../models/user.model";
+import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -125,8 +125,15 @@ export const logout = async (req, res) => {
 export const updateProfile = async (req, res) => {
     try {
         const { fullname, email, phoneNumber, bio, skills } = req.body;
+        if(!fullname || !email || !phoneNumber || !bio || !skills){
+            return res.status(400).json({
+                message: "Something is missing",
+                success: false
+            })
+        }
         
         const file = req.file;
+
         // cloudinary 
         const fileUri = getDataUri(file);
         const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
@@ -135,7 +142,7 @@ export const updateProfile = async (req, res) => {
 
         let skillsArray;
         if(skills){
-            skillsArray = skills.split(",");
+            skillsArray = skills.split(",");  //converting skills from string to array
         }
         const userId = req.id; // will get this from middleware authentication
         let user = await User.findById(userId);
@@ -146,6 +153,7 @@ export const updateProfile = async (req, res) => {
                 success: false
             })
         }
+
         // updating data
         if(fullname) user.fullname = fullname
         if(email) user.email = email
