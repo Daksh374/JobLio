@@ -23,7 +23,7 @@ export const register = async (req, res) => {
         }
 
         // Create user 
-        const hashedPassword = bcrypt.hash(password, 10)
+        const hashedPassword = await bcrypt.hash(password, 10)
 
         await User.create({
             fullname,
@@ -42,6 +42,7 @@ export const register = async (req, res) => {
         console.log(error)
     }
 }
+
 
 // Login logic
 
