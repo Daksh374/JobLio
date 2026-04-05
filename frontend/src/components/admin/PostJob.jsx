@@ -61,70 +61,70 @@ const PostJob = () => {
     return (
         <div>
             <Navbar />
-            <div className='flex items-center justify-center w-screen my-5'>
-                <form onSubmit = {submitHandler} className='p-8 max-w-4xl border border-gray-200 shadow-lg rounded-md'>
-                    <div className='grid grid-cols-2 gap-2'>
-                        <div>
+            <div className='flex items-center justify-center w-full my-10 px-4'>
+                <form onSubmit = {submitHandler} className='p-4 md:p-8 w-full max-w-4xl border border-gray-200 dark:border-gray-800 shadow-lg rounded-2xl bg-white dark:bg-gray-900'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <div className='space-y-1'>
                             <Label>Title</Label>
                             <Input
                                 type="text"
                                 name="title"
                                 value={input.title}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 rounded-xl"
                             />
                         </div>
-                        <div>
+                        <div className='space-y-1'>
                             <Label>Description</Label>
                             <Input
                                 type="text"
                                 name="description"
                                 value={input.description}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 rounded-xl"
                             />
                         </div>
-                        <div>
+                        <div className='space-y-1'>
                             <Label>Requirements</Label>
                             <Input
                                 type="text"
                                 name="requirements"
                                 value={input.requirements}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 rounded-xl"
                             />
                         </div>
-                        <div>
+                        <div className='space-y-1'>
                             <Label>Salary</Label>
                             <Input
                                 type="text"
                                 name="salary"
                                 value={input.salary}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 rounded-xl"
                             />
                         </div>
-                        <div>
+                        <div className='space-y-1'>
                             <Label>Location</Label>
                             <Input
                                 type="text"
                                 name="location"
                                 value={input.location}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 rounded-xl"
                             />
                         </div>
-                        <div>
+                        <div className='space-y-1'>
                             <Label>Job Type</Label>
                             <Input
                                 type="text"
                                 name="jobType"
                                 value={input.jobType}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 rounded-xl"
                             />
                         </div>
-                        <div>
+                        <div className='space-y-1'>
                             <Label>Experience Level (in years)</Label>
                             <Input
                                 type="number"
@@ -132,46 +132,53 @@ const PostJob = () => {
                                 placeholder="e.g. 1"
                                 value={input.experience}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 rounded-xl"
                             />
                         </div>
-                        <div>
+                        <div className='space-y-1'>
                             <Label>No of Position</Label>
                             <Input
                                 type="number"
                                 name="position"
                                 value={input.position}
                                 onChange={changeEventHandler}
-                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1 rounded-xl"
                             />
                         </div>
                         {
                             companies.length > 0 && (
-                                <Select onValueChange={selectChangeHandler}>
-                                    <SelectTrigger className="w-[180px]">
-                                        <SelectValue placeholder="Select a Company" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            {
-                                                companies.map((company) => {
-                                                    return (
-                                                        <SelectItem value={company._id}>{company.name}</SelectItem>
-                                                    )
-                                                })
-                                            }
+                                <div className='col-span-1 md:col-span-2 mt-2'>
+                                    <Label className="block mb-2">Select Company</Label>
+                                    <Select onValueChange={selectChangeHandler}>
+                                        <SelectTrigger className="w-full md:w-[250px] rounded-xl">
+                                            <SelectValue placeholder="Select a Company" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                {
+                                                    companies.map((company) => {
+                                                        return (
+                                                            <SelectItem key={company._id} value={company._id}>{company.name}</SelectItem>
+                                                        )
+                                                    })
+                                                }
 
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
                             )
                         }
                     </div> 
                     {
-                        loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Post New Job</Button>
+                        loading ? (
+                            <Button className="w-full mt-8 bg-primary rounded-full h-12"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button>
+                        ) : (
+                            <Button type="submit" className="w-full mt-8 bg-primary hover:bg-primary/90 rounded-full h-12 shadow-lg shadow-primary/20 transition-all font-semibold">Post New Job</Button>
+                        )
                     }
                     {
-                        companies.length === 0 && <p className='text-xs text-red-600 font-bold text-center my-3'>*Please register a company first, before posting a jobs</p>
+                        companies.length === 0 && <p className='text-xs text-red-600 font-bold text-center mt-4'>*Please register a company first, before posting a job</p>
                     }
                 </form>
             </div>

@@ -77,63 +77,72 @@ const CompanySetup = () => {
     return (
         <div>
             <Navbar />
-            <div className='max-w-xl mx-auto my-10'>
-                <form onSubmit={submitHandler}>
-                    <div className='flex items-center gap-5 p-8'>
-                        <Button onClick={() => navigate("/admin/companies")} variant="outline" className="flex items-center gap-2 text-gray-500 font-semibold">
-                            <ArrowLeft />
+            <div className='max-w-2xl mx-auto my-10 px-4'>
+                <form onSubmit={submitHandler} className='border border-gray-200 dark:border-gray-800 rounded-2xl p-4 md:p-8 shadow-lg bg-white dark:bg-gray-900'>
+                    <div className='flex items-center gap-5 mb-8'>
+                        <Button onClick={() => navigate("/admin/companies")} variant="outline" className="flex items-center gap-2 text-gray-500 font-semibold rounded-full px-4">
+                            <ArrowLeft className="w-4 h-4" />
                             <span>Back</span>
                         </Button>
-                        <h1 className='font-bold text-xl'>Company Setup</h1>
+                        <h1 className='font-bold text-xl md:text-2xl'>Company Setup</h1>
                     </div>
-                    <div className='grid grid-cols-2 gap-4'>
-                        <div>
-                            <Label>Company Name</Label>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'>
+                        <div className='space-y-2'>
+                            <Label className="font-semibold text-gray-700 dark:text-gray-300">Company Name</Label>
                             <Input
                                 type="text"
                                 name="name"
                                 value={input.name}
                                 onChange={changeEventHandler}
+                                className="rounded-xl"
                             />
                         </div>
-                        <div>
-                            <Label>Description</Label>
+                        <div className='space-y-2'>
+                            <Label className="font-semibold text-gray-700 dark:text-gray-300">Description</Label>
                             <Input
                                 type="text"
                                 name="description"
                                 value={input.description}
                                 onChange={changeEventHandler}
+                                className="rounded-xl"
                             />
                         </div>
-                        <div>
-                            <Label>Website</Label>
+                        <div className='space-y-2'>
+                            <Label className="font-semibold text-gray-700 dark:text-gray-300">Website</Label>
                             <Input
                                 type="text"
                                 name="website"
                                 value={input.website}
                                 onChange={changeEventHandler}
+                                className="rounded-xl"
                             />
                         </div>
-                        <div>
-                            <Label>Location</Label>
+                        <div className='space-y-2'>
+                            <Label className="font-semibold text-gray-700 dark:text-gray-300">Location</Label>
                             <Input
                                 type="text"
                                 name="location"
                                 value={input.location}
                                 onChange={changeEventHandler}
+                                className="rounded-xl"
                             />
                         </div>
-                        <div>
-                            <Label>Logo</Label>
+                        <div className='space-y-2 col-span-1 md:col-span-2'>
+                            <Label className="font-semibold text-gray-700 dark:text-gray-300">Company Logo</Label>
                             <Input
                                 type="file"
                                 accept="image/*"
                                 onChange={changeFileHandler}
+                                className="rounded-xl cursor-pointer"
                             />
                         </div>
                     </div>
                     {
-                        loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Update</Button>
+                        loading ? (
+                            <Button className="w-full mt-8 bg-primary rounded-full h-12"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button>
+                        ) : (
+                            <Button type="submit" className="w-full mt-8 bg-primary hover:bg-primary/90 rounded-full h-12 shadow-lg shadow-primary/20 transition-all font-semibold">Update Details</Button>
+                        )
                     }
                 </form>
             </div>

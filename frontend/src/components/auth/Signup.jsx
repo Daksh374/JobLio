@@ -70,90 +70,110 @@ const Signup = () => {
     return (
         <div>
             <Navbar />
-            <div className='flex items-center justify-center mx-auto min-h-[80vh]'>
-                <form onSubmit={submitHandler} className='w-full sm:w-2/3 md:w-1/2 lg:w-1/3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border border-gray-100 dark:border-gray-800 rounded-3xl p-8 my-10 shadow-2xl hover:shadow-primary/10 transition-shadow duration-300'>
-                    <h1 className='font-extrabold text-3xl mb-8 text-center text-gray-800 dark:text-gray-100'>Create Account</h1>
-                    <div className='my-4'>
-                        <Label>Full Name</Label>
-                        <Input
-                            type="text"
-                            value={input.fullname}
-                            name="fullname"
-                            onChange={changeEventHandler}
-                            placeholder="name"
-                        />
-                    </div>
-                    <div className='my-2'>
-                        <Label>Email</Label>
-                        <Input
-                            type="email"
-                            value={input.email}
-                            name="email"
-                            onChange={changeEventHandler}
-                            placeholder="email@gmail.com"
-                        />
-                    </div>
-                    <div className='my-2'>
-                        <Label>Phone Number</Label>
-                        <Input
-                            type="text"
-                            value={input.phoneNumber}
-                            name="phoneNumber"
-                            onChange={changeEventHandler}
-                            placeholder="0000000000"
-                        />
-                    </div>
-                    <div className='my-2'>
-                        <Label>Password</Label>
-                        <Input
-                            type="password"
-                            value={input.password}
-                            name="password"
-                            onChange={changeEventHandler}
-                            placeholder="password"
-                        />
-                    </div>
-                    <div className='flex items-center justify-between'>
-                        <RadioGroup className="flex items-center gap-4 my-5">
-                            <div className="flex items-center space-x-2">
-                                <Input
-                                    type="radio"
-                                    name="role"
-                                    value="student"
-                                    checked={input.role === 'student'}
-                                    onChange={changeEventHandler}
-                                    className="cursor-pointer"
-                                />
-                                <Label htmlFor="r1">Student</Label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <Input
-                                    type="radio"
-                                    name="role"
-                                    value="recruiter"
-                                    checked={input.role === 'recruiter'}
-                                    onChange={changeEventHandler}
-                                    className="cursor-pointer"
-                                />
-                                <Label htmlFor="r2">Recruiter</Label>
-                            </div>
-                        </RadioGroup>
-                        <div className='flex items-center gap-2'>
-                            <Label>Profile</Label>
+            <div className='flex items-center justify-center mx-auto min-h-[80vh] px-4'>
+                <form onSubmit={submitHandler} className='w-full max-w-xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg border border-gray-100 dark:border-gray-800 rounded-3xl p-6 md:p-8 my-10 shadow-2xl hover:shadow-primary/10 transition-shadow duration-300'>
+                    <h1 className='font-extrabold text-2xl md:text-3xl mb-6 md:mb-8 text-center text-gray-800 dark:text-gray-100'>Create Account</h1>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <div>
+                            <Label>Full Name</Label>
                             <Input
-                                accept="image/*"
-                                type="file"
-                                onChange={changeFileHandler}
-                                className="cursor-pointer"
+                                type="text"
+                                value={input.fullname}
+                                name="fullname"
+                                onChange={changeEventHandler}
+                                placeholder="Daksh Yadav"
+                                className="rounded-xl"
+                            />
+                        </div>
+                        <div>
+                            <Label>Email</Label>
+                            <Input
+                                type="email"
+                                value={input.email}
+                                name="email"
+                                onChange={changeEventHandler}
+                                placeholder="email@gmail.com"
+                                className="rounded-xl"
+                            />
+                        </div>
+                        <div>
+                            <Label>Phone Number</Label>
+                            <Input
+                                type="text"
+                                value={input.phoneNumber}
+                                name="phoneNumber"
+                                onChange={changeEventHandler}
+                                placeholder="9876543210"
+                                className="rounded-xl"
+                            />
+                        </div>
+                        <div>
+                            <Label>Password</Label>
+                            <Input
+                                type="password"
+                                value={input.password}
+                                name="password"
+                                onChange={changeEventHandler}
+                                placeholder="********"
+                                className="rounded-xl"
                             />
                         </div>
                     </div>
+                    
+                    <div className='mt-6 space-y-6'>
+                        <div className='flex flex-col sm:flex-row sm:items-center justify-between gap-4'>
+                            <RadioGroup className="flex items-center gap-4">
+                                <div className="flex items-center space-x-2">
+                                    <Input
+                                        type="radio"
+                                        name="role"
+                                        value="student"
+                                        checked={input.role === 'student'}
+                                        onChange={changeEventHandler}
+                                        className="cursor-pointer h-4 w-4"
+                                    />
+                                    <Label htmlFor="r1" className="cursor-pointer text-sm">Student</Label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <Input
+                                        type="radio"
+                                        name="role"
+                                        value="recruiter"
+                                        checked={input.role === 'recruiter'}
+                                        onChange={changeEventHandler}
+                                        className="cursor-pointer h-4 w-4"
+                                    />
+                                    <Label htmlFor="r2" className="cursor-pointer text-sm">Recruiter</Label>
+                                </div>
+                            </RadioGroup>
+                            <div className='flex items-center gap-3'>
+                                <Label className="text-sm shrink-0">Profile Photo</Label>
+                                <Input
+                                    accept="image/*"
+                                    type="file"
+                                    onChange={changeFileHandler}
+                                    className="cursor-pointer text-xs h-9"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    
                     {
-                        loading ? <Button className="w-full my-6 bg-primary hover:bg-primary/90 text-white rounded-full p-6 text-lg font-medium"> <Loader2 className='mr-2 h-5 w-5 animate-spin' /> Please wait </Button> 
-                        : <Button type="submit" className="w-full my-6 bg-primary hover:bg-primary/90 text-white rounded-full p-6 text-lg font-medium shadow-lg shadow-primary/25 transition-all duration-300">Signup</Button>
+                        loading ? (
+                            <Button className="w-full my-6 bg-primary hover:bg-primary/90 text-white rounded-full h-12 md:h-14 text-lg font-medium"> 
+                                <Loader2 className='mr-2 h-5 w-5 animate-spin' /> Please wait 
+                            </Button> 
+                        ) : (
+                            <Button type="submit" className="w-full my-6 bg-primary hover:bg-primary/90 text-white rounded-full h-12 md:h-14 text-lg font-medium shadow-lg shadow-primary/25 transition-all duration-300">
+                                Signup
+                            </Button>
+                        )
                     }
+                    
                     <div className='text-center'>
-                        <span className='text-sm text-gray-600'>Already have an account? <Link to="/login" className='text-primary hover:underline font-semibold'>Login</Link></span>
+                        <span className='text-sm text-gray-600 dark:text-gray-400'>
+                            Already have an account? <Link to="/login" className='text-primary hover:underline font-semibold'>Login</Link>
+                        </span>
                     </div>
                 </form>
             </div>

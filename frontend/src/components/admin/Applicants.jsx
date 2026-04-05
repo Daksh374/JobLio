@@ -26,9 +26,11 @@ const Applicants = () => {
     return (
         <div>
             <Navbar />
-            <div className='max-w-7xl mx-auto'>
-                <h1 className='font-bold text-xl my-5'>Applicants {applicants?.applications?.length}</h1>
-                <ApplicantsTable />
+            <div className='max-w-7xl mx-auto px-4'>
+                <h1 className='font-bold text-xl my-5 md:text-2xl'>Applicants ({applicants?.applications?.length || 0})</h1>
+                <div className='overflow-x-auto'>
+                    <ApplicantsTable />
+                </div>
             </div>
         </div>
     )

@@ -17,8 +17,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:'https://job-lio.vercel.app',
-    credentials:true
+    origin: ['https://job-lio.vercel.app', 'http://localhost:5173', 'http://localhost:5174'],
+    credentials: true
 }
 
 app.use(cors(corsOptions));

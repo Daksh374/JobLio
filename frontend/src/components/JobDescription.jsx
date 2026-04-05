@@ -51,32 +51,32 @@ const JobDescription = () => {
     },[jobId,dispatch, user?._id]);
 
     return (
-        <div className='max-w-7xl mx-auto my-10'>
-            <div className='flex items-center justify-between'>
+        <div className='max-w-7xl mx-auto my-10 px-4'>
+            <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6'>
                 <div>
-                    <h1 className='font-bold text-xl'>{singleJob?.title}</h1>
-                    <div className='flex items-center gap-2 mt-4'>
+                    <h1 className='font-bold text-2xl md:text-3xl'>{singleJob?.title}</h1>
+                    <div className='flex flex-wrap items-center gap-2 mt-4'>
                         <Badge className={'text-blue-700 dark:text-blue-400 font-bold'} variant="ghost">{singleJob?.postion} Positions</Badge>
                         <Badge className={'text-[#F83002] dark:text-red-400 font-bold'} variant="ghost">{singleJob?.jobType}</Badge>
                         <Badge className={'text-[#7209b7] dark:text-purple-400 font-bold'} variant="ghost">{singleJob?.salary}LPA</Badge>
                     </div>
                 </div>
                 <Button
-                onClick={isApplied ? null : applyJobHandler}
+                    onClick={isApplied ? null : applyJobHandler}
                     disabled={isApplied}
-                    className={`rounded-lg text-white ${isApplied ? 'bg-gray-600 cursor-not-allowed' : 'bg-[#7209b7] hover:bg-[#5f32ad]'}`}>
+                    className={`rounded-lg text-white w-full sm:w-auto px-8 py-6 sm:py-2 text-lg sm:text-base ${isApplied ? 'bg-gray-600 cursor-not-allowed' : 'bg-[#7209b7] hover:bg-[#5f32ad]'}`}>
                     {isApplied ? 'Already Applied' : 'Apply Now'}
                 </Button>
             </div>
-            <h1 className='border-b-2 border-b-gray-300 dark:border-b-gray-700 font-medium py-4'>Job Description</h1>
-            <div className='my-4'>
-                <h1 className='font-bold my-1'>Role: <span className='pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.title}</span></h1>
-                <h1 className='font-bold my-1'>Location: <span className='pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.location}</span></h1>
-                <h1 className='font-bold my-1'>Description: <span className='pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.description}</span></h1>
-                <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.experience} yrs</span></h1>
-                <h1 className='font-bold my-1'>Salary: <span className='pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.salary}LPA</span></h1>
-                <h1 className='font-bold my-1'>Total Applicants: <span className='pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.applications?.length}</span></h1>
-                <h1 className='font-bold my-1'>Posted Date: <span className='pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.createdAt.split("T")[0]}</span></h1>
+            <h1 className='border-b-2 border-b-gray-300 dark:border-b-gray-700 font-medium py-4 mt-8'>Job Description</h1>
+            <div className='my-6 space-y-4'>
+                <h1 className='font-bold flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0'>Role: <span className='sm:pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.title}</span></h1>
+                <h1 className='font-bold flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0'>Location: <span className='sm:pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.location}</span></h1>
+                <h1 className='font-bold flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-0'>Description: <span className='sm:pl-4 font-normal text-gray-800 dark:text-gray-300 text-sm md:text-base'>{singleJob?.description}</span></h1>
+                <h1 className='font-bold flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0'>Experience: <span className='sm:pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.experience} yrs</span></h1>
+                <h1 className='font-bold flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0'>Salary: <span className='sm:pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.salary}LPA</span></h1>
+                <h1 className='font-bold flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0'>Total Applicants: <span className='sm:pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.applications?.length}</span></h1>
+                <h1 className='font-bold flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0'>Posted Date: <span className='sm:pl-4 font-normal text-gray-800 dark:text-gray-300'>{singleJob?.createdAt?.split("T")[0]}</span></h1>
             </div>
         </div>
     )
